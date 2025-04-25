@@ -1,0 +1,51 @@
+
+services:
+  user-service:
+    build:
+      context: ./user-service
+    environment:
+      - MONGO_URI=mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net/UserService
+      - NODE_ENV=production
+    ports:
+      - "4545:4545"
+    networks:
+      - app-network
+
+  medical-records-service:
+    build:
+      context: ./medical-records-service
+    environment:
+      - MONGO_URI=mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net/UserService
+      - NODE_ENV=production
+    ports:
+      - "5050:5050"
+    networks:
+      - app-network
+
+  doctor-service:
+    build:
+      context: ./doctor-service
+    environment:
+      - MONGO_URI=mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net/UserService
+      - NODE_ENV=production
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+  appointment-service:
+    build:
+      context: ./appointment-service
+    environment:
+      - MONGO_URI=mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net/UserService
+      - NODE_ENV=production
+      - MEDICAL_RECORDS_SERVICE=http://medical-records-service:3002
+      - DOCTOR_SERVICE=http://doctor-service:3003
+    ports:
+      - "4000:4000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
