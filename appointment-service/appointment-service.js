@@ -27,24 +27,29 @@ app.post("/appointment",async (req, res) => {
             return res.status(400).json({ message: "All fields are required" });
         }
 
-        // Create and save appointment
-        const newAppointment = new appointments({ patientId, doctorId, date, time, reason, status: "Scheduled" });
+        const PatientResponse = await axios.get('http://user-service:4545/user/'+patientId);
+            if(PatientResponse.data == 404){
+                res.status(404).json({error: "Patient Not Found"});
+            }
+            const PatData = PatientResponse.data
+            const PatID = PatData._id;
 
-        const addToMedicalRecord = {
-          appointmentId: newAppointment._id,
-          doctorId,
-          date,
-          time,
-          reason,
-          status: "Scheduled"
+        const DoctorResponse = await axios.get('http://doctor-service:5000/doctor/'+doctorId);
+        if(DoctorResponse.data == 404){
+            res.status(404).json({error: "Doctor Not Found"});
         }
+        const DocData = DoctorResponse.data
+        const DocID = DocData._id;
+
+        // Create and save appointment
+        const newAppointment = new appointments({ patientId: PatID, doctorId: DocID, date, time, reason, status: "Scheduled" });
 
         const removeSlotPayload = {
           date: date,
           TimeSlot: time
         };
   
-        const removeSlotResponse = await axios.post(`http://localhost:5000/removeAvailability/${doctorId}`, removeSlotPayload); 
+        const removeSlotResponse = await axios.post(`http://doctor-service:5000/removeAvailability/${doctorId}`, removeSlotPayload); 
   
         if (removeSlotResponse.status === 200) {
           console.log("Removed slot from doctor availability")
@@ -54,7 +59,16 @@ app.post("/appointment",async (req, res) => {
           });
         }
 
-        const RecordResponse = await axios.put('http://localhost:5050/addAppointment/'+patientId, addToMedicalRecord);
+        const addToMedicalRecord = {
+          appointmentId: newAppointment._id,
+          doctorId: DocID,
+          date,
+          time,
+          reason,
+          status: "Scheduled"
+        }
+
+        const RecordResponse = await axios.put('http://medical-records-service:5050/addAppointment/'+PatID, addToMedicalRecord);
 
         if(RecordResponse.status === 200){
           await newAppointment.save();
@@ -70,11 +84,10 @@ app.post("/appointment",async (req, res) => {
 
     } catch (error) {
         console.error(error);
-
         if(error.response){
           return res.status(error.response.status).json({
             message:"Medical record service error",
-            error:"error.response.data"
+            error: error.response.data
           });
         }
         res.status(500).json({ message: "Server error", error: error.message });
@@ -122,9 +135,31 @@ app.delete("/appointment/:id", async (req, res) => {
     }
 
     // Call Medical Record service to delete the appointment
-    const medicalRecordResponse = await axios.delete('http://localhost:5050/removeAppointment/' + appointment.patientId + "/"+ appointmentId);
+    const medicalRecordResponse = await axios.put('http://medical-records-service:5050/removeAppointment/' + appointment.patientId + "/"+ appointmentId);
 
     if (medicalRecordResponse.status === 200) {
+      console.log("HIHIHIHIHIH");
+      const DoctorResponse = await axios.get('http://doctor-service:5000/findDoctorById/'+appointment.doctorId);
+        if(DoctorResponse.data == 404){
+            res.status(404).json({error: "Doctor Not Found"});
+        }
+        const DocData = DoctorResponse.data
+        const DocID = DocData.doctorId;
+
+      const restoreSlotResponse = await axios.post(
+        `http://doctor-service:5000/restoreAvailability/${DocID}`,
+        {
+          date: appointment.date,
+          TimeSlot: appointment.time, // assuming the field name is 'time'
+        }
+      );
+  
+      if (restoreSlotResponse.status !== 200) {
+        return res.status(500).json({
+          message: "Failed to restore doctor's availability. Deletion aborted.",
+        });
+      }
+
       // Only delete from appointment DB if Medical Record deletion was successful
       await appointments.findByIdAndDelete(appointmentId);
 
@@ -142,7 +177,7 @@ app.delete("/appointment/:id", async (req, res) => {
     if (error.response) {
       return res.status(error.response.status).json({
         message: "Medical record service error",
-        error: error.response.data,
+        error: error.message,
       });
     }
 

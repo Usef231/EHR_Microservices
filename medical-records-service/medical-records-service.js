@@ -253,16 +253,22 @@ app.put("/removeAppointment/:patientId/:appointmentId", async (req, res) => {
         const record = await Records.findOne({ patient: req.params.patientId });
 
         if (!record) {
+            console.log("LOL");
             return res.status(404).json({ error: "Medical record not found" });
         }
-
+        console.log("LOL2");
         const originalLength = record.appointments.length;
 
-        record.appointments = record.appointments.filter(app => 
+        record.appointments = record.appointments.filter(app =>
             app.appointmentId.toString() !== req.params.appointmentId
         );
 
         if (record.appointments.length === originalLength) {
+            console.log("LOL3");
+            console.log("Available appointments:");
+            console.log(record.appointments.map(app => app.appointmentId.toString()));
+            console.log("Appointment ID to remove:", req.params.appointmentId);
+
             return res.status(404).json({ error: "Appointment not found" });
         }
 

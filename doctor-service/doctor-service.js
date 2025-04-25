@@ -96,6 +96,21 @@ app.get("/doctor/:doctorId",(req,res)=>{
     })
 })
 
+app.get("/findDoctorById/:doctorId",(req,res)=>{
+    Doctors.findById(req.params.doctorId).then((doctor)=>{
+
+        if(doctor){
+            res.json(doctor)
+        }
+        else{
+            res.send("404")
+        }
+
+    }).catch(err =>{
+        throw err;
+    })
+})
+
 app.put("/updateDoctor/:doctorId",async (req,res) =>{
     try{
         const{firstName, lastName, email, password,specialization,phoneNumber,experienceYears,licenseNumber}=req.body;
@@ -170,6 +185,13 @@ app.post("/validateDoctor/:doctorId",async (req,res)=>{
 
         if (availabilityIndex === -1) {
             return res.status(404).json({ error: "No available slots found for the selected date." });
+        }
+
+        const availableTimes = doctor.availability[availabilityIndex].TimeSlots;
+        const timeSlotIndex = availableTimes.indexOf(TimeSlot);
+
+        if (timeSlotIndex === -1) {
+            return res.status(404).json({ error: "The selected time slot is not available." });
         }
 
         // Remove the specific time slot
