@@ -39,6 +39,21 @@ app.post("/appointment",async (req, res) => {
           status: "Scheduled"
         }
 
+        const removeSlotPayload = {
+          date: date,
+          TimeSlot: time
+        };
+  
+        const removeSlotResponse = await axios.post(`http://localhost:5000/removeAvailability/${doctorId}`, removeSlotPayload); 
+  
+        if (removeSlotResponse.status === 200) {
+          console.log("Removed slot from doctor availability")
+        } else {
+          return res.status(500).json({
+            message: "Failed to update doctor availability."
+          });
+        }
+
         const RecordResponse = await axios.put('http://localhost:5050/addAppointment/'+patientId, addToMedicalRecord);
 
         if(RecordResponse.status === 200){
