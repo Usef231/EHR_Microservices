@@ -1,0 +1,24 @@
+parameters:
+  appointmentId:
+    type: string
+    description: The ID of the appointment to retrieve
+  userId:
+    type: string
+    description: The ID of the user requesting the appointment
+expectedOutcome:
+  success:
+    type: boolean
+    description: Indicates if the appointment retrieval was successful
+  appointmentDetails:
+    type: object
+    properties:
+      id:
+        type: string
+      date:
+        type: string
+      time:
+        type: string
+      doctorId:
+        type: string
+      userId:
+        type: string

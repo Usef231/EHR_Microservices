@@ -12,6 +12,7 @@ mongoose.connect("mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net
 
 //Load bodyparser
 const bodyParser = new require("body-parser");
+
 app.use(bodyParser.json());
 
 app.get('/',(req,res)=>{
@@ -26,7 +27,7 @@ app.post("/appointment",async (req, res) => {
         if (!patientId || !doctorId || !date || !time || !reason || !status) {
             return res.status(400).json({ message: "All fields are required" });
         }
-
+     
         const PatientResponse = await axios.get('http://user-service:4545/user/'+patientId);
             if(PatientResponse.data == 404){
                 res.status(404).json({error: "Patient Not Found"});
@@ -34,12 +35,14 @@ app.post("/appointment",async (req, res) => {
             const PatData = PatientResponse.data
             const PatID = PatData._id;
 
-        const DoctorResponse = await axios.get('http://doctor-service:5000/doctor/'+doctorId);
+
+        const DoctorResponse = await axios.get('http://doctor-service:5005/doctor/'+doctorId);
         if(DoctorResponse.data == 404){
             res.status(404).json({error: "Doctor Not Found"});
         }
         const DocData = DoctorResponse.data
         const DocID = DocData._id;
+
 
         // Create and save appointment
         const newAppointment = new appointments({ patientId: PatID, doctorId: DocID, date, time, reason, status: "Scheduled" });
@@ -48,9 +51,10 @@ app.post("/appointment",async (req, res) => {
           date: date,
           TimeSlot: time
         };
-  
-        const removeSlotResponse = await axios.post(`http://doctor-service:5000/removeAvailability/${doctorId}`, removeSlotPayload); 
-  
+        
+        const removeSlotResponse = await axios.post(`http://doctor-service:5005/removeAvailability/${doctorId}`, removeSlotPayload); 
+        
+
         if (removeSlotResponse.status === 200) {
           console.log("Removed slot from doctor availability")
         } else {
@@ -69,6 +73,7 @@ app.post("/appointment",async (req, res) => {
         }
 
         const RecordResponse = await axios.put('http://medical-records-service:5050/addAppointment/'+PatID, addToMedicalRecord);
+
 
         if(RecordResponse.status === 200){
           await newAppointment.save();
@@ -97,8 +102,7 @@ app.post("/appointment",async (req, res) => {
 app.get("/appointment/:id", async (req, res) => {
     try {
       const appointment = await appointments.findById(req.params.id)
-        .populate("patientId")
-        .populate("doctorId");
+
   
       if (!appointment) {
         return res.status(404).json({ message: "Appointment not found" });
@@ -139,7 +143,7 @@ app.delete("/appointment/:id", async (req, res) => {
 
     if (medicalRecordResponse.status === 200) {
       console.log("HIHIHIHIHIH");
-      const DoctorResponse = await axios.get('http://doctor-service:5000/findDoctorById/'+appointment.doctorId);
+      const DoctorResponse = await axios.get('http://doctor-service:5005/findDoctorById/'+appointment.doctorId);
         if(DoctorResponse.data == 404){
             res.status(404).json({error: "Doctor Not Found"});
         }
@@ -147,7 +151,7 @@ app.delete("/appointment/:id", async (req, res) => {
         const DocID = DocData.doctorId;
 
       const restoreSlotResponse = await axios.post(
-        `http://doctor-service:5000/restoreAvailability/${DocID}`,
+        `http://doctor-service:5005/restoreAvailability/${DocID}`,
         {
           date: appointment.date,
           TimeSlot: appointment.time, // assuming the field name is 'time'
@@ -207,7 +211,7 @@ app.put("/appointment/:id", async (req, res) => {
 
     // Call Medical Record Service to update appointment there as well
     const response = await axios.put(
-      `http://localhost:5050/updateAppointment/`+ appointment.patientId + '/' + appointmentId,
+      `http://medical-records-service:5050/updateAppointment/`+ appointment.patientId + '/' + appointmentId,
       {
         date: req.body.date,
         time: req.body.time,
@@ -245,3 +249,4 @@ app.put("/appointment/:id", async (req, res) => {
 app.listen(4000,() =>{
     console.log("Up and running! -- This is the Appointment Service");
 })
+module.exports = app;

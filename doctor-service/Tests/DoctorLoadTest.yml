@@ -1,0 +1,23 @@
+config:
+  target: "http://localhost:5005"
+  phases:
+    - duration: 30
+      arrivalRate: 15  # 5 requests per second
+  defaults:
+    headers:
+      Content-Type: "application/json"
+
+scenarios:
+  - name: "Create Doctor Profile"
+    flow:
+      - post:
+          url: "/createDoctor"
+          json:
+            firstName: "Test"
+            lastName: "Doctor"
+            gender: "Male"
+            email: "doctor{{ $randomInt(1000, 9999) }}@e xample.com"
+            experienceYears: 5
+            password: "strongpassword123"
+            specialization: "Cardiology"
+            licenseNumber: "LIC-{{ $randomInt(1000, 9999) }}"

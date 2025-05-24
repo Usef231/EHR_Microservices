@@ -1,0 +1,383 @@
+[
+    {
+      "firstName": "Alice",
+      "lastName": "Smith",
+      "dateOfBirth": "1990-05-15",
+      "gender": "Female",
+      "email": "alice.smith1@example.com",
+      "phone": "01000000001",
+      "weight": "65kg",
+      "height": "165cm",
+      "bloodType": "O+",
+      "address": {
+        "street": "Main Street",
+        "HouseNumber": "12A",
+        "aptNumber": "101",
+        "city": "Cairo"
+      },
+      "patientId": "P0001",
+      "password": "password123"
+    },
+    {
+      "firstName": "Bob",
+      "lastName": "Johnson",
+      "dateOfBirth": "1985-07-22",
+      "gender": "Male",
+      "email": "bob.johnson@example.com",
+      "phone": "01000000002",
+      "weight": "75kg",
+      "height": "178cm",
+      "bloodType": "A+",
+      "address": {
+        "street": "Second Street",
+        "HouseNumber": "34B",
+        "aptNumber": "202",
+        "city": "Alexandria"
+      },
+      "patientId": "P0002",
+      "password": "password123"
+    },
+    {
+      "firstName": "Carol",
+      "lastName": "Williams",
+      "dateOfBirth": "1992-03-10",
+      "gender": "Female",
+      "email": "carol.williams@example.com",
+      "phone": "01000000003",
+      "weight": "55kg",
+      "height": "160cm",
+      "bloodType": "B+",
+      "address": {
+        "street": "Third Avenue",
+        "HouseNumber": "56C",
+        "aptNumber": "303",
+        "city": "Giza"
+      },
+      "patientId": "P0003",
+      "password": "password123"
+    },
+    {
+      "firstName": "David",
+      "lastName": "Brown",
+      "dateOfBirth": "1988-12-01",
+      "gender": "Male",
+      "email": "david.brown@example.com",
+      "phone": "01000000004",
+      "weight": "80kg",
+      "height": "182cm",
+      "bloodType": "AB+",
+      "address": {
+        "street": "Palm Street",
+        "HouseNumber": "78D",
+        "aptNumber": "404",
+        "city": "Luxor"
+      },
+      "patientId": "P0004",
+      "password": "password123"
+    },
+    {
+      "firstName": "Eva",
+      "lastName": "Davis",
+      "dateOfBirth": "1995-09-09",
+      "gender": "Female",
+      "email": "eva.davis@example.com",
+      "phone": "01000000005",
+      "weight": "60kg",
+      "height": "162cm",
+      "bloodType": "O-",
+      "address": {
+        "street": "Nile Street",
+        "HouseNumber": "90E",
+        "aptNumber": "505",
+        "city": "Mansoura"
+      },
+      "patientId": "P0005",
+      "password": "password123"
+    },
+    {
+      "firstName": "Frank",
+      "lastName": "Miller",
+      "dateOfBirth": "1979-06-20",
+      "gender": "Male",
+      "email": "frank.miller@example.com",
+      "phone": "01000000006",
+      "weight": "85kg",
+      "height": "175cm",
+      "bloodType": "A-",
+      "address": {
+        "street": "Zamalek Road",
+        "HouseNumber": "101F",
+        "aptNumber": "606",
+        "city": "Cairo"
+      },
+      "patientId": "P0006",
+      "password": "password123"
+    },
+    {
+      "firstName": "Grace",
+      "lastName": "Wilson",
+      "dateOfBirth": "1987-08-30",
+      "gender": "Female",
+      "email": "grace.wilson@example.com",
+      "phone": "01000000007",
+      "weight": "70kg",
+      "height": "170cm",
+      "bloodType": "B-",
+      "address": {
+        "street": "Garden City",
+        "HouseNumber": "123G",
+        "aptNumber": "707",
+        "city": "Cairo"
+      },
+      "patientId": "P0007",
+      "password": "password123"
+    },
+    {
+      "firstName": "Hank",
+      "lastName": "Moore",
+      "dateOfBirth": "1991-11-11",
+      "gender": "Male",
+      "email": "hank.moore@example.com",
+      "phone": "01000000008",
+      "weight": "78kg",
+      "height": "180cm",
+      "bloodType": "O+",
+      "address": {
+        "street": "Heliopolis Way",
+        "HouseNumber": "145H",
+        "aptNumber": "808",
+        "city": "Heliopolis"
+      },
+      "patientId": "P0008",
+      "password": "password123"
+    },
+    {
+      "firstName": "Ivy",
+      "lastName": "Taylor",
+      "dateOfBirth": "1993-04-18",
+      "gender": "Female",
+      "email": "ivy.taylor@example.com",
+      "phone": "01000000009",
+      "weight": "68kg",
+      "height": "164cm",
+      "bloodType": "AB-",
+      "address": {
+        "street": "Fifth Settlement",
+        "HouseNumber": "167I",
+        "aptNumber": "909",
+        "city": "New Cairo"
+      },
+      "patientId": "P0009",
+      "password": "password123"
+    },
+    {
+      "firstName": "Jack",
+      "lastName": "Anderson",
+      "dateOfBirth": "1986-10-05",
+      "gender": "Male",
+      "email": "jack.anderson@example.com",
+      "phone": "01000000010",
+      "weight": "82kg",
+      "height": "183cm",
+      "bloodType": "A+",
+      "address": {
+        "street": "Maadi Street",
+        "HouseNumber": "189J",
+        "aptNumber": "1010",
+        "city": "Maadi"
+      },
+      "patientId": "P0010",
+      "password": "password123"
+    },
+    {
+      "firstName": "Kate",
+      "lastName": "Thomas",
+      "dateOfBirth": "1980-01-20",
+      "gender": "Female",
+      "email": "kate.thomas@example.com",
+      "phone": "01000000011",
+      "weight": "58kg",
+      "height": "159cm",
+      "bloodType": "B+",
+      "address": {
+        "street": "Tanta Road",
+        "HouseNumber": "11K",
+        "aptNumber": "1111",
+        "city": "Tanta"
+      },
+      "patientId": "P0011",
+      "password": "password123"
+    },
+    {
+      "firstName": "Liam",
+      "lastName": "Jackson",
+      "dateOfBirth": "1994-02-17",
+      "gender": "Male",
+      "email": "liam.jackson@example.com",
+      "phone": "01000000012",
+      "weight": "70kg",
+      "height": "176cm",
+      "bloodType": "O+",
+      "address": {
+        "street": "Downtown",
+        "HouseNumber": "12L",
+        "aptNumber": "1212",
+        "city": "Ismailia"
+      },
+      "patientId": "P0012",
+      "password": "password123"
+    },
+    {
+      "firstName": "Mia",
+      "lastName": "White",
+      "dateOfBirth": "1996-06-25",
+      "gender": "Female",
+      "email": "mia.white@example.com",
+      "phone": "01000000013",
+      "weight": "62kg",
+      "height": "168cm",
+      "bloodType": "A-",
+      "address": {
+        "street": "Suez Road",
+        "HouseNumber": "13M",
+        "aptNumber": "1313",
+        "city": "Suez"
+      },
+      "patientId": "P0013",
+      "password": "password123"
+    },
+    {
+      "firstName": "Noah",
+      "lastName": "Harris",
+      "dateOfBirth": "1993-08-08",
+      "gender": "Male",
+      "email": "noah.harris@example.com",
+      "phone": "01000000014",
+      "weight": "76kg",
+      "height": "177cm",
+      "bloodType": "O-",
+      "address": {
+        "street": "Ramses",
+        "HouseNumber": "14N",
+        "aptNumber": "1414",
+        "city": "Cairo"
+      },
+      "patientId": "P0014",
+      "password": "password123"
+    },
+    {
+      "firstName": "Olivia",
+      "lastName": "Martin",
+      "dateOfBirth": "1990-12-30",
+      "gender": "Female",
+      "email": "olivia.martin@example.com",
+      "phone": "01000000015",
+      "weight": "64kg",
+      "height": "163cm",
+      "bloodType": "B+",
+      "address": {
+        "street": "Port Said Ave",
+        "HouseNumber": "15O",
+        "aptNumber": "1515",
+        "city": "Port Said"
+      },
+      "patientId": "P0015",
+      "password": "password123"
+    },
+    {
+      "firstName": "Paul",
+      "lastName": "Lee",
+      "dateOfBirth": "1989-04-12",
+      "gender": "Male",
+      "email": "paul.lee@example.com",
+      "phone": "01000000016",
+      "weight": "84kg",
+      "height": "180cm",
+      "bloodType": "AB+",
+      "address": {
+        "street": "Sharqiya",
+        "HouseNumber": "16P",
+        "aptNumber": "1616",
+        "city": "Sharm El Sheikh"
+      },
+      "patientId": "P0016",
+      "password": "password123"
+    },
+    {
+      "firstName": "Quinn",
+      "lastName": "Adams",
+      "dateOfBirth": "1992-09-03",
+      "gender": "Female",
+      "email": "quinn.adams@example.com",
+      "phone": "01000000017",
+      "weight": "71kg",
+      "height": "165cm",
+      "bloodType": "O+",
+      "address": {
+        "street": "New Cairo",
+        "HouseNumber": "17Q",
+        "aptNumber": "1717",
+        "city": "Cairo"
+      },
+      "patientId": "P0017",
+      "password": "password123"
+    },
+    {
+      "firstName": "Rachel",
+      "lastName": "Scott",
+      "dateOfBirth": "1984-07-14",
+      "gender": "Female",
+      "email": "rachel.scott@example.com",
+      "phone": "01000000018",
+      "weight": "69kg",
+      "height": "172cm",
+      "bloodType": "A-",
+      "address": {
+        "street": "East End",
+        "HouseNumber": "18R",
+        "aptNumber": "1818",
+        "city": "Cairo"
+      },
+      "patientId": "P0018",
+      "password": "password123"
+    },
+    {
+      "firstName": "Sam",
+      "lastName": "Gonzalez",
+      "dateOfBirth": "1982-05-21",
+      "gender": "Male",
+      "email": "sam.gonzalez@example.com",
+      "phone": "01000000019",
+      "weight": "90kg",
+      "height": "185cm",
+      "bloodType": "B+",
+      "address": {
+        "street": "Giza Road",
+        "HouseNumber": "19S",
+        "aptNumber": "1919",
+        "city": "Giza"
+      },
+      "patientId": "P0019",
+      "password": "password123"
+    },
+    {
+      "firstName": "Tina",
+      "lastName": "Evans",
+      "dateOfBirth": "1990-11-28",
+      "gender": "Female",
+      "email": "tina.evans@example.com",
+      "phone": "01000000020",
+      "weight": "63kg",
+      "height": "167cm",
+      "bloodType": "O+",
+      "address": {
+        "street": "Mohandessin",
+        "HouseNumber": "20T",
+        "aptNumber": "2020",
+        "city": "Cairo"
+      },
+      "patientId": "P0020",
+      "password": "password123"
+    }
+  ]
+  

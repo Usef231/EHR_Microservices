@@ -5,6 +5,9 @@
     "mongoose": "^8.13.1"
   },
   "devDependencies": {
-    "nodemon": "^3.1.9"
+    "mocha": "^11.2.2",
+    "nock": "^14.0.4",
+    "nodemon": "^3.1.9",
+    "supertest": "^7.1.0"
   }
 }

@@ -8,6 +8,9 @@ const PatientSchema = new mongoose.Schema(
       gender: { type: String, enum: ["Male", "Female", "Other"], required: true },
       email: { type: String, required: true, unique: true },
       phone: { type: String, required: true, unique: true },
+      weight:{type:String, required:true},
+      height:{type:String, required:true},
+      bloodType:{type:String, required:true},
       address:{
         street:{type: String, required:true},
         HouseNumber:{type:String, required:true},

@@ -27,7 +27,7 @@ app.post("/doctor",async (req,res)=>{
             }
         }
         const lastDoctor  = await Doctors.findOne().sort({ _id: -1 })
-        const lastIdNumber = lastDoctor ? parseInt(lastDoctor.DoctorId.split("-")[1]) : 0;
+        const lastIdNumber = lastDoctor ? parseInt(lastDoctor.doctorId.split("-")[1]) : 0;
         const DoctorID= `DOC-${String(lastIdNumber + 1).padStart(5, "0")}`;
 
         var newDoctor = {
@@ -183,13 +183,13 @@ app.post("/validateDoctor/:doctorId",async (req,res)=>{
             avail.date.toISOString().split("T")[0] === formattedDate
         );
 
+
         if (availabilityIndex === -1) {
             return res.status(404).json({ error: "No available slots found for the selected date." });
         }
 
         const availableTimes = doctor.availability[availabilityIndex].TimeSlots;
         const timeSlotIndex = availableTimes.indexOf(TimeSlot);
-
         if (timeSlotIndex === -1) {
             return res.status(404).json({ error: "The selected time slot is not available." });
         }
@@ -270,7 +270,7 @@ app.post("/doctor/:doctorId/review", async (req, res) => {
             return res.status(404).json({ error: "Doctor not found" });
         }
 
-        const PatientResponse = await axios.get('http://localhost:4545/user/'+patientId);
+        const PatientResponse = await axios.get('http://user-service:4545/user/'+patientId);
         console.log(PatientResponse.data);
         if(PatientResponse.data == 404){
             res.status(404).json({error: "Patient Not Found"});
@@ -352,6 +352,6 @@ app.get("/doctors/specialization/:specialization", async (req, res) => {
 });
 
 
-app.listen(5000, () =>{
+app.listen(5005, () =>{
     console.log("Up and Running! -- This is Doctor Service")
 })

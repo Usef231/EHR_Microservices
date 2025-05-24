@@ -25,7 +25,7 @@ app.post("/medical-records", async (req,res)=>{
         diagnoses, treatmentPlans, labResults, radiologyReports, insuranceProvider
     } = req.body;
 
-    const PatientResponse = await axios.get('http://localhost:4545/user/'+patient);
+    const PatientResponse = await axios.get('http://user-service:4545/user/'+patient);
     if(PatientResponse.data == 404){
         res.status(404).json({error: "Patient Not Found"});
     }
@@ -253,10 +253,8 @@ app.put("/removeAppointment/:patientId/:appointmentId", async (req, res) => {
         const record = await Records.findOne({ patient: req.params.patientId });
 
         if (!record) {
-            console.log("LOL");
             return res.status(404).json({ error: "Medical record not found" });
         }
-        console.log("LOL2");
         const originalLength = record.appointments.length;
 
         record.appointments = record.appointments.filter(app =>
@@ -264,11 +262,6 @@ app.put("/removeAppointment/:patientId/:appointmentId", async (req, res) => {
         );
 
         if (record.appointments.length === originalLength) {
-            console.log("LOL3");
-            console.log("Available appointments:");
-            console.log(record.appointments.map(app => app.appointmentId.toString()));
-            console.log("Appointment ID to remove:", req.params.appointmentId);
-
             return res.status(404).json({ error: "Appointment not found" });
         }
 
@@ -303,6 +296,8 @@ app.put("/updateAppointment/:patientId/:appointmentId", async (req, res) => {
         if (req.body.doctorId) appointment.doctorId = req.body.doctorId;
         if (req.body.reason) appointment.reason = req.body.reason;
         if (req.body.status) appointment.status = req.body.status;
+
+        
 
         await record.save();
 

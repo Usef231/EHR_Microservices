@@ -1,0 +1,93 @@
+[
+    {
+      "appointmentId": "A0001",
+      "patientId": "PAT-00001",
+      "doctorId": "DOC-00001",
+      "date": "2025-05-03T00:00",
+      "reason":"checkup",
+      "status":"Scheduled",
+      "time": "09:00"
+    },
+    {
+      "appointmentId": "A0002",
+      "patientId": "PAT-00001",
+      "doctorId": "DOC-00002",
+      "date": "2025-05-04T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "10:00"
+    },
+    {
+      "appointmentId": "A0003",
+      "patientId": "PAT-00002",
+      "doctorId": "DOC-00001",
+      "date": "2025-05-03T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "09:30"
+    },
+    {
+      "appointmentId": "A0004",
+      "patientId": "PAT-00002",
+      "doctorId": "DOC-00002",
+      "date": "2025-05-04T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "10:30"
+    },
+    {
+      "appointmentId": "A0005",
+      "patientId": "PAT-00003",
+      "doctorId": "DOC-00001",
+      "date": "2025-05-03T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "11:00"
+    },
+    {
+      "appointmentId": "A0006",
+      "patientId": "PAT-00003",
+      "doctorId": "DOC-00002",
+      "date": "2025-05-04T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "11:30"
+    },
+    {
+      "appointmentId": "A0007",
+      "patientId": "PAT-00004",
+      "doctorId": "DOC-00001",
+      "date": "2025-05-03T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "12:00"
+    },
+    {
+      "appointmentId": "A0008",
+      "patientId": "PAT-00004",
+      "doctorId": "DOC-00002",
+      "date": "2025-05-04T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "12:30"
+    },
+    {
+      "appointmentId": "A0009",
+      "patientId": "PAT-00005",
+      "doctorId": "DOC-00001",
+      "date": "2025-05-03T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "13:00"
+    },
+    {
+      "appointmentId": "A0010",
+      "patientId": "PAT-00005",
+      "doctorId": "DOC-00002",
+      "date": "2025-05-04T00:00",
+      "reason":"Checkup",
+      "status":"Scheduled",
+      "time": "14:30"
+    }
+  ]
+  

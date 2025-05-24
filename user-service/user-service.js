@@ -41,14 +41,36 @@ app.post("/User",async (req,res)=>{
             phone:req.body.phone,
             address: req.body.address,
             patientId: PatientID,
-            password: req.body.password
+            password: req.body.password,
+            weight:req.body.weight,
+            height:req.body.height,
+            bloodType: req.body.bloodType
         }
 
         var user = new User(newUser)
 
         await user.save();
 
-        const medicalRecordResponse = await axios.post("http://localhost:5050/medical-records", {
+        console.log("Request body to medical-records-service:", {
+            patient: PatientID,
+            emergencyContact: [],
+            allergies: [],
+            chronicDiseases: [],
+            pastSurgeries: [],
+            currentMedications: [],
+            vaccinationRecords: [],
+            bloodType: req.body.bloodType,
+            weight: req.body.weight,
+            height: req.body.height,
+            appointments: [],
+            diagnoses: [],
+            treatmentPlans: [],
+            labResults: [],
+            radiologyReports: [],
+            insuranceProvider: ""
+        });
+
+        const medicalRecordResponse = await axios.post("http://medical-records-service:5050/medical-records", {
             patient: PatientID, // Reference to the new user's _id
             emergencyContact:[],
             allergies: [],
@@ -129,7 +151,7 @@ app.put("/updateUser/:patientId",async (req,res) =>{
 
         await user.save();
 
-        const updateResponse = await axios.put('http://localhost:5050/updatePatient/'+user._id,req.body);
+        const updateResponse = await axios.put('http://medical-records-service:5050/updatePatient/'+user._id,req.body);
         if(updateResponse.data == 404){
             res.status(404).json({error: "Medical record Not Updated"});
         }
@@ -170,7 +192,10 @@ app.post("/validateUser/:PatientId",async (req,res)=>{
    }
 })
 
-app.listen(4545,() =>{
-    console.log("Up and running! -- This is the User Service");
-})
+if (require.main === module) {
+    app.listen(4545, () => {
+        console.log("Up and running! -- This is the User Service");
+    });
+}
+module.exports = app;
 

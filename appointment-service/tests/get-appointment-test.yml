@@ -1,0 +1,10 @@
+config:
+  target: "http://localhost:4000"
+  phases:
+    - duration: 80
+      arrivalRate: 166
+scenarios:
+  - name: "Get Appointment Load Test"
+    flow:
+      - get:
+          url: "/appointment/68166f8d5c7af711a101fb2e"

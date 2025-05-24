@@ -29,7 +29,7 @@ services:
       - MONGO_URI=mongodb+srv://YoussefSeyam:Admin@userservice.8lohq.mongodb.net/UserService
       - NODE_ENV=production
     ports:
-      - "5000:5000"
+      - "5005:5005"
     networks:
       - app-network
 
